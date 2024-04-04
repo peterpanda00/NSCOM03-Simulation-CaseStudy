@@ -37,39 +37,38 @@ def fsk_demodulation(received_signal, freq0, freq1, sampling_rate):
             demodulated_signal.append('1')
     return ''.join(demodulated_signal)
 
-# Create a TCP/IP socket
+
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-# Bind the socket to the address and port
+
 server_address = ('localhost', 12345)
 server_socket.bind(server_address)
 
-# Listen for incoming connections
+
 server_socket.listen(1)
 
 print("Waiting for a connection...")
 
-# Accept a connection
+
 connection, client_address = server_socket.accept()
 
 try:
     print("Connection established with", client_address)
     
-    # Define parameters
+   
     binary_input = '01010010100101000'  # 16-bit binary input
-    carrier_freq = 50  # Carrier frequency in Hz for ASK
-    freq0 = 25  # Frequency for logic 0 in Hz for FSK
-    freq1 = 50  # Frequency for logic 1 in Hz for FSK
-    sampling_rate = 10  # Sampling rate in Hz
+    carrier_freq = 50  
+    freq0 = 25  
+    freq1 = 50  
+    sampling_rate = 10  
     duration = len(binary_input) / sampling_rate
     
-    # Modulate the signal using ASK
+
     t_ask, modulated_ask = ask_modulation(binary_input, carrier_freq, sampling_rate, duration)
-    
-    # Modulate the signal using FSK
+
     t_fsk, modulated_fsk = fsk_modulation(binary_input, freq0, freq1, sampling_rate, duration)
     
-    # Send the modulated signals
+
     connection.sendall(modulated_ask.tobytes())
     connection.sendall(modulated_fsk.tobytes())
     
