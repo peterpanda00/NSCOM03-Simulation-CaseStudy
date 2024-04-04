@@ -2,6 +2,11 @@
 
 This repository contains Python scripts for simulating digital modulation and demodulation techniques, along with supplementary files including a MATLAB script and PCAP files for Wireshark analysis.
 
+**Team Members**
+1. Aperin, Johanna
+2. Elloso, Jilliane
+3. Tan, Jiliana
+
 **Files Included:**
 
 1. **server.py**: This Python script serves as the server-side implementation for simulating the modulation and transmission of digital signals using Amplitude Shift Keying (ASK) and Frequency Shift Keying (FSK) techniques. It establishes a TCP/IP socket, generates modulated signals, and sends them to connected clients.
